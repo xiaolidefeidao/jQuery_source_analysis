@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deferred简介</title>
+    <script src="js/jquery.js" type="text/javascript"></script>
+</head>
+<body>
+<script>
+    function fn1(val) {
+        console.logx("fn1 say-----------------",val)
+    }
+    function fn2(val) {
+        console.log("fn2 say-----------------",val)
+    }
+    function d1(){
+        var dfd = $.Deferred();
+        setTimeout(function () {
+
+            // d1的任务代码
+            console.log("d1-------------------------------------------")
+//            dfd.resolve("foo");
+            dfd.reject("bar");
+        }, 1000);
+        return dfd.promise();
+//        return dfd;
+    }
+    d1().done(fn1).fail(fn2);
+//    d1().resolve()
+</script>
+</body>
+</html>
